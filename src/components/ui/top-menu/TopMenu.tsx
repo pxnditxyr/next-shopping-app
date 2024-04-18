@@ -1,8 +1,10 @@
 import { titleFont } from '@/config'
 import Link from 'next/link'
 import { IoCartOutline, IoSearchOutline } from 'react-icons/io5'
+import { OpenMenuButton } from './OpenMenuButton'
 
 export const TopMenu = () => {
+
   return (
     <nav className="flex px-5 justify-between items-center w-full bg-gray-900 text-white">
       <div>
@@ -38,9 +40,7 @@ export const TopMenu = () => {
           </div>
         </Link>
 
-        <button className="p-2 rounded-md transition-all hover:bg-gray-100 hover:text-gray-900">
-          Menu
-        </button>
+        <OpenMenuButton />
       </div>
     </nav>
   )
