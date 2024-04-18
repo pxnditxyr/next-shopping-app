@@ -1,4 +1,6 @@
-import { titleFont } from "@/config"
+import { ProductGrid, Title } from "@/components"
+import { TValidCategory } from "@/interfaces"
+import { initialData } from "@/seed"
 import { notFound } from "next/navigation"
 
 export const metadata = {
@@ -8,24 +10,37 @@ export const metadata = {
 
 interface IProps {
   params: {
-    id: string
+    id: TValidCategory
   }
 }
 
 export default function CartegoryPage ( { params }: IProps ) {
 
   const { id } = params
+  const productsByCategory = initialData.products.filter(
+    product => product.gender === id
+  )
 
-  if ( id === 'kids' ) {
+  const labels : Record<TValidCategory, string> = {
+    'men': 'Men',
+    'women': 'Women',
+    'kid': 'Kids',
+    'unisex': 'Unisex',
+  }
+
+  if ( productsByCategory.length === 0 ) {
     notFound()
   }
 
   return (
     <div className="">
-      <h1
-        className={ `${ titleFont.className } antialiased font-bold text-4xl` }
-      > Cartegory Page </h1>
-      <p className="text-xl"> Category ID: { id } </p>
+      <Title
+        title={ `${ labels[ id ] } Collection` }
+        subtitle="Todos los productos"
+      />
+      <ProductGrid
+        products={ productsByCategory }
+      />
     </div>
   )
 }

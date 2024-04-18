@@ -22,8 +22,8 @@ export const TopMenu = () => {
         <Link href="/category/women" className="p-2 rounded-md transition-all hover:bg-gray-100 hover:text-gray-900">
           Women
         </Link>
-        <Link href="/category/kids" className="p-2 rounded-md transition-all hover:bg-gray-100 hover:text-gray-900">
-          Kids
+        <Link href="/category/kid" className="p-2 rounded-md transition-all hover:bg-gray-100 hover:text-gray-900">
+          Kid
         </Link>
       </div>
 

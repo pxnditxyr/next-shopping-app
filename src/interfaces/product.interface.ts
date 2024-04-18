@@ -4,13 +4,14 @@ export interface IProduct {
   images: string[]
   inStock: number
   price: number
-  sizes: ValidSizes[]
+  sizes: TValidSizes[]
   slug: string
   tags: string[]
   title: string
-  type: ValidTypes
-  gender: 'men'|'women'|'kid'|'unisex'
+  type: TValidType
+  gender: TValidCategory
 }
 
-export type ValidSizes = 'XS'|'S'|'M'|'L'|'XL'|'XXL'|'XXXL'
-export type ValidTypes = 'shirts'|'pants'|'hoodies'|'hats'
+export type TValidSizes = 'XS'|'S'|'M'|'L'|'XL'|'XXL'|'XXXL'
+export type TValidType = 'shirts'|'pants'|'hoodies'|'hats'
+export type TValidCategory = 'men' | 'women' | 'kid' | 'unisex'
