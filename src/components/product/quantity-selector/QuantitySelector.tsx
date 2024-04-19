@@ -17,14 +17,14 @@ export const QuantitySelector = ( { quantity } : IProps ) => {
   }
 
   return (
-    <div className="flex flex-row items-center gap-2">
-      <button className="p-2 rounded-full" onClick={ () => onQuantityChange( -1 ) }>
+    <div className="flex flex-row items-center gap-4">
+      <button className="rounded-full" onClick={ () => onQuantityChange( -1 ) }>
         <IoRemoveCircleOutline size={ 30 } />
       </button>
 
       <span className="bg-gray-400 p-2 rounded-md">{ count }</span>
 
-      <button className="p-2 rounded-full" onClick={ () => onQuantityChange( 1 ) }>
+      <button className="rounded-full" onClick={ () => onQuantityChange( 1 ) }>
         <IoAddCircleOutline size={ 30 } />
       </button>
     </div>
