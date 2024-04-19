@@ -1,4 +1,4 @@
-import { Sidebar, TopMenu } from '@/components'
+import { Footer, Sidebar, TopMenu } from '@/components'
 
 export default function ShopLayout({
   children,
@@ -9,7 +9,10 @@ export default function ShopLayout({
     <main className="flex flex-col items-center w-full min-h-screen">
       <TopMenu />
       <Sidebar />
-      { children }
+      <div className="">
+        { children }
+      </div>
+      <Footer />
     </main>
   )
 }
