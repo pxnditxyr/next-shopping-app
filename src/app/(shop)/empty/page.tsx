@@ -12,7 +12,6 @@ export default function EmptyPage () {
       <IoCartOutline size={ 100 } />
       <div className="flex flex-col items-center gap-5">
         <h1 className="text-xl font-semibold"> Your cart is empty </h1>
-
         <Link href="/" className="text-blue-500 text-4xl"> Continue Shopping </Link>
       </div>
     </div>
