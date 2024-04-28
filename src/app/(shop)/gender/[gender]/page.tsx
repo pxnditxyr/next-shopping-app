@@ -7,8 +7,8 @@ import { Gender } from "@prisma/client"
 import { notFound } from "next/navigation"
 
 export const metadata = {
-  title: 'Cartegory Page',
-  description: 'Cartegory Page',
+  title: 'Gender Page',
+  description: 'Gender Page',
 }
 
 interface IProps {

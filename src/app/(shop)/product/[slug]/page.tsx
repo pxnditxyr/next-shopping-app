@@ -1,6 +1,15 @@
-import { ProductMobileSlideshow, ProductSlideshow, QuantitySelector, SizeSelector } from '@/components'
+export const revalidate = 604800
+
+import { getProductBySlug } from '@/actions'
+import {
+  ProductMobileSlideshow,
+  ProductSlideshow,
+  QuantitySelector,
+  SizeSelector,
+  StockLabel
+} from '@/components'
 import { titleFont } from '@/config'
-import { initialData } from '@/seed'
+import { Metadata, ResolvingMetadata } from 'next'
 import { notFound } from 'next/navigation'
 
 interface IProps {
@@ -9,16 +18,33 @@ interface IProps {
   }
 }
 
-export const metadata = {
-  title: 'Product #1',
-  description: 'Product #1',
-}
 
-export default function ProductPage ( { params }: IProps ) {
+
+export async function generateMetadata(
+  { params } : IProps,
+  parent : ResolvingMetadata
+) : Promise<Metadata> {
 
   const { slug } = params
 
-  const product = initialData.products.find( product => product.slug === slug )
+  const product = await getProductBySlug( slug )
+
+  return {
+    title: product?.title ?? 'Product not found',
+    description: product?.description ?? '',
+    openGraph: {
+      title: product?.title ?? 'Product not found',
+      description: product?.description ?? '',
+      images: [ `/products/${ product?.images[ 1 ] }` ]
+    }
+  }
+}
+
+export default async function ProductPage ( { params }: IProps ) {
+
+  const { slug } = params
+
+  const product = await getProductBySlug( slug )
 
   if ( !product ) {
     notFound()
@@ -42,6 +68,9 @@ export default function ProductPage ( { params }: IProps ) {
         <h1 className={ `${ titleFont.className } antialiased font-bold text-xl p-2` }>
           { product.title }
         </h1>
+
+        <StockLabel slug={ slug } />
+        
         <p className="text-lg p-4">
           ${ product.price }
         </p>
