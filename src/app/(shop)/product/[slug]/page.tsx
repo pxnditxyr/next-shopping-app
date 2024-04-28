@@ -11,6 +11,7 @@ import {
 import { titleFont } from '@/config'
 import { Metadata, ResolvingMetadata } from 'next'
 import { notFound } from 'next/navigation'
+import { AddToCart } from './ui/AddToCart'
 
 interface IProps {
   params: {
@@ -75,18 +76,7 @@ export default async function ProductPage ( { params }: IProps ) {
           ${ product.price }
         </p>
 
-        <SizeSelector
-          selectedSize={ product.sizes[ 0 ] }
-          availableSizes={ product.sizes }
-        />
-
-        <QuantitySelector
-          quantity={ 1 }
-        />
-
-        <button className="bg-gray-900 text-white p-2 rounded-md mb-4">
-          Add to cart
-        </button>
+        <AddToCart product={ product } />
 
         <h3 className="font-bold text-sm"> Description </h3>
         <p className="font-light">

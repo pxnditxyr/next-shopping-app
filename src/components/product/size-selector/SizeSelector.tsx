@@ -2,11 +2,13 @@ import { TValidSizes } from '@/interfaces'
 import clsx from 'clsx'
 
 interface IProps {
-  selectedSize: TValidSizes
+  selectedSize?: TValidSizes
   availableSizes: TValidSizes[]
+
+  onSelectSize: ( size : TValidSizes ) => void
 }
 
-export const SizeSelector = ( { selectedSize, availableSizes }: IProps ) => {
+export const SizeSelector = ( { selectedSize, availableSizes, onSelectSize }: IProps ) => {
 
   return (
     <div className="py-2">
@@ -16,6 +18,7 @@ export const SizeSelector = ( { selectedSize, availableSizes }: IProps ) => {
           availableSizes.map( size => (
             <button
               key={ size }
+              onClick={ () => onSelectSize( size ) }
               className={
                 clsx(
                   'p-2 rounded-md',
