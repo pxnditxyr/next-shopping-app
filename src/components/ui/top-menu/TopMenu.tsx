@@ -1,7 +1,8 @@
 import { titleFont } from '@/config'
 import Link from 'next/link'
-import { IoCartOutline, IoSearchOutline } from 'react-icons/io5'
+import { IoSearchOutline } from 'react-icons/io5'
 import { OpenMenuButton } from './OpenMenuButton'
+import { ShoppingCartButton } from './ShoppingCartButton'
 
 export const TopMenu = () => {
 
@@ -31,14 +32,8 @@ export const TopMenu = () => {
         <Link href="/search" className="p-2 rounded-md transition-all hover:bg-gray-100 hover:text-gray-900">
           <IoSearchOutline className="w-5 h-5"/>
         </Link>
-        <Link href="/cart" className="p-2 rounded-md transition-all hover:bg-gray-100 hover:text-gray-900">
-          <div className="relative">
-            <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center">
-              3
-            </span>
-            <IoCartOutline className="w-5 h-5"/>
-          </div>
-        </Link>
+        
+        <ShoppingCartButton />
 
         <OpenMenuButton />
       </div>

@@ -8,7 +8,7 @@ export interface IProduct {
   slug: string
   tags: string[]
   title: string
-  type: TValidType
+  // type: TValidType
   gender: TValidCategory
 }
 

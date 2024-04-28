@@ -4,8 +4,6 @@ import { getProductBySlug } from '@/actions'
 import {
   ProductMobileSlideshow,
   ProductSlideshow,
-  QuantitySelector,
-  SizeSelector,
   StockLabel
 } from '@/components'
 import { titleFont } from '@/config'
@@ -23,7 +21,7 @@ interface IProps {
 
 export async function generateMetadata(
   { params } : IProps,
-  parent : ResolvingMetadata
+  _parent : ResolvingMetadata
 ) : Promise<Metadata> {
 
   const { slug } = params
