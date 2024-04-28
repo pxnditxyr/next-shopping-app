@@ -16,13 +16,13 @@ export const TopMenu = () => {
         </Link>
       </div>
       <div className="gap-5 hidden sm:flex">
-        <Link href="/category/men" className="p-2 rounded-md transition-all hover:bg-gray-100 hover:text-gray-900">
+        <Link href="/gender/men" className="p-2 rounded-md transition-all hover:bg-gray-100 hover:text-gray-900">
           Men
         </Link>
-        <Link href="/category/women" className="p-2 rounded-md transition-all hover:bg-gray-100 hover:text-gray-900">
+        <Link href="/gender/women" className="p-2 rounded-md transition-all hover:bg-gray-100 hover:text-gray-900">
           Women
         </Link>
-        <Link href="/category/kid" className="p-2 rounded-md transition-all hover:bg-gray-100 hover:text-gray-900">
+        <Link href="/gender/kid" className="p-2 rounded-md transition-all hover:bg-gray-100 hover:text-gray-900">
           Kid
         </Link>
       </div>

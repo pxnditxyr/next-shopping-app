@@ -1,5 +1,4 @@
 import { QuantitySelector, Title } from "@/components"
-import { IProduct } from "@/interfaces"
 import { initialData } from "@/seed"
 import Image from "next/image"
 import Link from "next/link"
@@ -10,7 +9,8 @@ export const metadata = {
   description: 'Cart Page',
 }
 
-const productsInCart : IProduct[] = [
+const productsInCart = [
+  
   initialData.products[ 0 ],
   initialData.products[ 1 ],
   initialData.products[ 2 ],

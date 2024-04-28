@@ -1,5 +1,5 @@
 export interface IProduct {
-  // id: string
+  id: string
   description: string
   images: string[]
   inStock: number
