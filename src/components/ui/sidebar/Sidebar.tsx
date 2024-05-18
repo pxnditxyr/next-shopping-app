@@ -1,25 +1,22 @@
 'use client'
-import { IoCloseOutline, IoLogInOutline, IoPeopleOutline, IoPersonOutline, IoSearchOutline, IoShirtOutline, IoTicketOutline } from 'react-icons/io5'
+import { IoCloseOutline, IoLogInOutline, IoLogOutOutline, IoPeopleOutline, IoPersonOutline, IoSearchOutline, IoShirtOutline, IoTicketOutline } from 'react-icons/io5'
 import { SidebarItem } from './SidebarItem'
 import { useUiStore } from '@/store'
 import clsx from 'clsx'
+import { signout } from '@/actions'
+import { useSession } from 'next-auth/react'
 
 const sidebarItems = [
   {
     title: 'Profile',
     icon: <IoPersonOutline size={ 30 } />,
-    href: '/'
+    href: '/profile'
   },
   {
     title: 'Orders',
     icon: <IoTicketOutline size={ 30 } />,
     href: '/orders'
   },
-  {
-    title: 'Sign In',
-    icon: <IoLogInOutline size={ 30 } />,
-    href: '/signin'
-  }
 ]
 
 const sidebarItemsManagement = [
@@ -43,6 +40,12 @@ const sidebarItemsManagement = [
 export const Sidebar = () => {
   const isSideMenuOpen = useUiStore( state => state.isSideMenuOpen )
   const closeMenu = useUiStore( state => state.closeSideMenu )
+
+  const { data: session } = useSession()
+
+  const isAuthenticated = !!session?.user
+  const isAdmin = session?.user?.role === 'admin'
+  console.log({ session })
 
   return (
     <div className="">
@@ -83,15 +86,48 @@ export const Sidebar = () => {
           />
         </div>
         {
-          sidebarItems.map( ( item, index ) => (
-            <SidebarItem key={ index } { ...item } />
-          ) )
+          ( isAuthenticated ) && (
+            sidebarItems.map( ( item, index ) => (
+              <SidebarItem
+                key={ index }
+                { ...item }
+                onClick={ closeMenu }
+              />
+            ) )
+          )
+        }
+
+        {
+          ( isAuthenticated )
+            ? (
+              <button
+                className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all gap-4 text-xl"
+                onClick={ () => signout() }
+              >
+                <IoLogOutOutline size={ 30 } />
+                Sign Out
+              </button>
+            )
+            :  (
+              <SidebarItem
+                title="Sign In"
+                icon={ <IoLogInOutline size={ 30 } /> }
+                href="/signin"
+                onClick={ closeMenu }
+              />
+            )
         }
         <div className="w-full h-px bg-gray-300 my-10 rounded-md"></div>
         {
-          sidebarItemsManagement.map( ( item, index ) => (
-            <SidebarItem key={ index } { ...item } />
-          ) )
+          ( isAdmin ) && (
+            sidebarItemsManagement.map( ( item, index ) => (
+              <SidebarItem
+                key={ index }
+                { ...item }
+                onClick={ closeMenu }
+              />
+            ) )
+          )
         }
       </aside>
     </div>

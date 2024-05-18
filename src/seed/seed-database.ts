@@ -5,6 +5,7 @@ async function main () {
   console.log( 'Seeding database 🐼...' )
 
   try {
+    await prisma.users.deleteMany()
     await prisma.productImages.deleteMany()
     await prisma.products.deleteMany()
     await prisma.categories.deleteMany()
@@ -15,7 +16,11 @@ async function main () {
 
   console.log( 'Database cleared.' )
 
-  const { categories, products } = initialData
+  const { categories, products, users } = initialData
+
+  await prisma.users.createMany({
+    data: users,
+  })
 
   const categoriesData = categories.map( name => ({ name }) )
 
